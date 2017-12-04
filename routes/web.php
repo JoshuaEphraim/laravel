@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'SiteController@main');
+Route::get('/directory', 'DirectoryController@main');
+Route::get('/featured', 'FeaturedController@main');
+Route::get('/blog', 'BlogController@main');
+Route::get('/about', 'AboutController@main');
+Route::get('ajax_sites_comments', 'SiteController@sites_comments');
+
