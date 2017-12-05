@@ -1,5 +1,10 @@
 
 $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
     var array=showComments();
     $("#rate_1").html(parseFloat(array[2].toFixed(1)));
     $("#rate_2").html(Math.round(array[0])+'%');
