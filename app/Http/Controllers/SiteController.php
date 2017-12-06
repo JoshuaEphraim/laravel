@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\DomainComment;
 use App\User;
+use App;
 use App\Http\Controllers\Controller;
 
 class SiteController extends Controller
@@ -26,7 +27,7 @@ class SiteController extends Controller
 	public function sites_comments()
 	{
 		$comment=App\Domain::where('domain', 1)
-			->orderBy('name', 'desc')
+			->orderBy('domain', 'desc')
 			->take(10)
 			->get();
 
