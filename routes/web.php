@@ -17,4 +17,6 @@ Route::get('/featured', 'FeaturedController@main');
 Route::get('/blog', 'BlogController@main');
 Route::get('/about', 'AboutController@main');
 Route::post('/ajax_sites_comments', 'SiteController@sites_comments');
+Route::post('/ajax_main_traffic', 'SiteController@main_traffic');
+
 

@@ -9,10 +9,10 @@ function showComments() {
         dataType: "json",
         async: false,
         success: function (resp) {
-            if(resp[2]['count']>0) {
-                rate = resp[2]['rate'] / resp[2]['count'];
-                positive = resp[2]['pos'] * 100 / resp[2]['count'];
-                negative = resp[2]['neg'] * 100 / resp[2]['count'];
+            if(resp[2][0]['count']>0) {
+                rate = resp[2][0]['rate'] / resp[2][0]['count'];
+                positive = resp[2][0]['pos'] * 100 / resp[2][0]['count'];
+                negative = resp[2][0]['neg'] * 100 / resp[2][0]['count'];
             }
             $.each(resp[0], function (index, value) {
                 if(index<3) {
@@ -65,7 +65,7 @@ function getTraffic()
     var traffic;
     $.ajax({
         type:"POST",
-        url: '/app/php/sites/ajax/ajax_main_traffic.php',
+        url: 'ajax_main_traffic',
         dataType: "json",
         async: false,
         success: function( resp ) {
