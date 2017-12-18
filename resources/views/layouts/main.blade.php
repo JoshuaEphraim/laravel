@@ -41,9 +41,9 @@
                 <div class="rSide">
                     <ul class="menu">
                         <li><a href="/directory">Directory</a></li>
-                        <li><a href="/index.php/featured">Featured</a></li>
-                        <li><a href="/index.php/blog">Blog</a></li>
-                        <li><a href="/index.php/about">About</a></li>
+                        <li><a href="/featured">Featured</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/about">About</a></li>
                     </ul>
                 </div>
                 <div class="clear"><!--//--></div>

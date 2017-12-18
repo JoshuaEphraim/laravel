@@ -2,7 +2,7 @@ function showDomains() {
     var i=0;
     $.ajax({
         type: "POST",
-        url: '/php/featured/ajax/ajax_directory_domains.php',
+        url: 'featured/ajax_directory_domains',
         dataType: "json",
         async: false,
         success: function (resp) {

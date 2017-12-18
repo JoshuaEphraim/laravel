@@ -18,8 +18,11 @@ Route::get('directory/{country?}/{rate?}/{page?}','DirectoryController@main');
 Route::post('directory/ajax_directory_selector','DirectoryController@directory_selector');
 Route::post('directory/ajax_directory_domains','DirectoryController@directory_domains');
 Route::get('/featured', 'FeaturedController@main');
+Route::post('/featured/ajax_directory_domains', 'FeaturedController@directory_domains');
 Route::get('/blog', 'BlogController@main');
 Route::get('/about', 'AboutController@main');
+
+
 
 
 
