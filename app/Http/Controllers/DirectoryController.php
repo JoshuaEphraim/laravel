@@ -34,53 +34,64 @@ class DirectoryController extends Controller
 		include_once('function.php');
 		$usl = '';
 		$show_pages=10;
-		$this_page = $request->page;
+		$this_page = ($request->page!='All')?$request->page:1;
 		$country=$request->country;
 		$rate=$request->rate;
 		$db='dc_domain';
 		$count='*';
-
+		$rows_max=App\Domain::get()->count();
+		$row=false;
 		if($country!='All'&&$rate!='All')
 		{
-			$db = 'dc_domain_comment';
-			$condition = 'domain_id IN (SELECT domain_id FROM `dc_domain_comment` group by domain_id HAVING FLOOR(sum(rate)/count(comment))=5 AND domain_id IN
-                    (SELECT domain_id FROM dc_parse_data WHERE JSON_EXTRACT(geo, \'$."geoplugin_countryName"\') = "United States"))';
-			$where = 'JSON_EXTRACT(p.geo, \'$."geoplugin_countryName"\') = "' . $country . '"';
-			$count = 'distinct domain_id';
+			$r1=App\ParseData::where('geo->geoplugin_countryName', $country)
+				->get();
+			$r2=App\DomainComment::groupBy('domain_id')
+				->selectRaw('sum(rate) as sum, domain_id')
+				->selectRaw('count(comment) comments, domain_id')
+				->get();
+			$r2 = $r2->filter(function ($value, $key)use($rate,$r1) {
+				return floor($value->sum/$value->comments)==$rate&&$r1->where('domain_id', $value->domain_id);
+			});
+			$rows_max=$r2->count();
+			$row = $r1->filter(function ($value)use($r2) {
+					return $r2->search(function ($item, $key) use ($value) {
+						return $item->domain_id == $value->domain_id;
+					});
+
+			});
 		}
 		else {
 			if ($country != 'All') {
-				$db = 'dc_parse_data';
-				$condition = 'WHERE JSON_EXTRACT(geo, \'$."geoplugin_countryName"\') = "' . $country . '"';
-				$where = 'JSON_EXTRACT(p.geo, \'$."geoplugin_countryName"\') = "' . $country . '"';
+				$row=App\ParseData::select('domain_id')->where('geo->geoplugin_countryName', $country)
+					->get();
+				$rows_max=$row->count();
 			}
 			if ($rate != 'All') {
-				$db = 'dc_domain_comment';
-				$condition = 'domain_id IN (SELECT domain_id FROM `dc_domain_comment` group by domain_id HAVING FLOOR(sum(rate)/count(comment))=5)';
-				$count = 'distinct domain_id';
+				$r=App\DomainComment::groupBy('domain_id')
+					->selectRaw('sum(rate) as sum, domain_id')
+					->selectRaw('count(comment) comments, domain_id')
+					->get();
+				$row = $r->filter(function ($value, $key)use($rate) {
+					return floor($value->sum/$value->comments)==$rate;
+				});
+				$rows_max=$row->count();
 			}
 		}
+		$domains = App\Domain::with('commentsRaitings')
+			->with('parseReverseIp')
+			->groupBy('domain')
+			->paginate(10);
+		$domains = $domains->filter(function ($value)use($row) {
+			if($row) {
+				return $row->search(function ($item, $key) use ($value) {
+					return $item->domain_id == $value->id;
+				});
+			}
+			else{return true;}
+		});
 
-		$row=App\Domain::with('comment')
-			->with('parseData')
-			->when($country!='All',function ($q)use($country){
-				return $q->where('JSON_EXTRACT(geo, \'$."geoplugin_countryName"\')','=',$country);
-			})
 
-			->groupby('domain')
-			->take($show_pages)
-			->get();
-		foreach($row as $v)
-		{
-			$rate=$v['comment']->sum('rate');
-			$count=count($v['comment']);
-			$reverse=count(json_decode($v['parseData']['reverse_ip']));
-			unset($v['comment']);
-			unset($v['parseData']);
-			$v['sumR']=$rate;
-			$v['comments']=$count;
-			$v['reverse_count']=$reverse;
-		}
-		echo json_encode(array($row));
+
+		echo json_encode(array($domains));
 	}
 }

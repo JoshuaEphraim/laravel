@@ -94,7 +94,7 @@ function showDomains(page, country, rates) {
                     if(r!=thisPage)
                     {
                         $('#second .pagination').append('<li id="pag'+r+'">');
-                        $('#second .pagination #pag'+r).append('<a href="/index.php/directory/' + encodeURIComponent(thisCountry) + '/'+thisRate+'/'+r+'" class="pag">'+r);
+                        $('#second .pagination #pag'+r).append('<a href="/directory/' + encodeURIComponent(thisCountry) + '/'+thisRate+'/'+r+'" class="pag">'+r);
                     }
                     else
                     {
