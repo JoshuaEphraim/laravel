@@ -1,7 +1,10 @@
 function makeOptions(){
     $.ajax({
         type: "POST",
-        url: '/php/directory/ajax/ajax_directory_selector.php',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/directory/ajax_directory_selector',
         dataType: "json",
         async: false,
         success: function (resp) {
@@ -10,16 +13,18 @@ function makeOptions(){
             }
             else
             {
-                $('.config .countries').append('<a href="/index.php/directory/All/' + thisRate + '" class="list-group-item">All');
+                $('.config .countries').append('<a href="/directory/All/' + thisRate + '" class="list-group-item">All');
             }
             if(thisRate=='All')
             {
                 $('.search .rate').append('<a class="list-group-item active">All');
             }
             else {
-                $('.search .rate').append('<a href="/index.php/directory/' + encodeURIComponent(thisCountry) + '/All" class="list-group-item">All');
+                $('.search .rate').append('<a href="/directory/' + encodeURIComponent(thisCountry) + '/All" class="list-group-item">All');
             }
+
             $.each(resp[0], function (index, value) {
+
                 if(value['country']!=null)
                 {
                     val=value['country'];
@@ -30,7 +35,7 @@ function makeOptions(){
                     }
                     else
                     {
-                        $('.config .countries').append('<a href="/index.php/directory/' + encodeURIComponent(v) + '/'+thisRate+'" class="list-group-item">' + v);
+                        $('.config .countries').append('<a href="/directory/' + encodeURIComponent(v) + '/'+thisRate+'" class="list-group-item">' + v);
 
                     }
                 }
@@ -44,7 +49,7 @@ function makeOptions(){
                     }
                     else
                     {
-                        $('.search .rate').append('<a href="/index.php/directory/' + encodeURIComponent(thisCountry) + '/' + val + '" class="list-group-item">' + val);
+                        $('.search .rate').append('<a href="/directory/' + encodeURIComponent(thisCountry) + '/' + val + '" class="list-group-item">' + val);
                     }
                 }
             });
@@ -59,7 +64,10 @@ function showDomains(page, country, rates) {
     var i=0;
     $.ajax({
         type: "POST",
-        url: '/php/directory/ajax/ajax_directory_domains.php',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/directory/ajax_directory_domains',
         dataType: "json",
         data: {page: page,country:country,rate:rates},
         async: false,

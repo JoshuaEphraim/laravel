@@ -12,11 +12,14 @@
 */
 
 Route::get('/', 'SiteController@main');
-Route::get('/directory', 'DirectoryController@main');
+Route::post('site/ajax_sites_comments', 'SiteController@sites_comments');
+Route::post('site/ajax_main_traffic', 'SiteController@main_traffic');
+Route::get('directory/{country?}/{rate?}/{page?}','DirectoryController@main');
+Route::post('directory/ajax_directory_selector','DirectoryController@directory_selector');
+Route::post('directory/ajax_directory_domains','DirectoryController@directory_domains');
 Route::get('/featured', 'FeaturedController@main');
 Route::get('/blog', 'BlogController@main');
 Route::get('/about', 'AboutController@main');
-Route::post('/ajax_sites_comments', 'SiteController@sites_comments');
-Route::post('/ajax_main_traffic', 'SiteController@main_traffic');
+
 
 

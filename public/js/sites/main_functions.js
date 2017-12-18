@@ -5,7 +5,7 @@ function showComments() {
     var array=[];
     $.ajax({
         type: "POST",
-        url: 'ajax_sites_comments',
+        url: 'site/ajax_sites_comments',
         dataType: "json",
         async: false,
         success: function (resp) {
@@ -18,7 +18,7 @@ function showComments() {
                 if(index<3) {
                     $('#review .reviewL').append('<div class="review" id="'+value['id']+'">');
                     $('#review .reviewL #'+value['id']).append('<p class="author">');
-                    $('#review .reviewL #'+value['id']+' .author').append('<a href="/'+value['domain']+'.html">' + value['name'] + '  ' + value['rate'] + '/10 for '+value['domain']);
+                    $('#review .reviewL #'+value['id']+' .author').append('<a href="/'+value['domain']['domain']+'.html">' + value['name'] + '  ' + value['rate'] + '/10 for '+value['domain']['domain']);
                     $('#review .reviewL #'+value['id']).append('<p class="date">' + 'Published  ' + value['date']);
                     $('#review .reviewL #'+value['id']).append('<p>' + value['comment']);
 
@@ -26,7 +26,7 @@ function showComments() {
                 if(index>2&&index<=5){
                     $('#review .reviewR').append('<div class="review" id="'+value['id']+'">');
                     $('#review .reviewR #'+value['id']).append('<p class="author">');
-                    $('#review .reviewR #'+value['id']+' .author').append('<a href="/'+value['domain']+'.html">' + value['name'] + '  ' + value['rate'] + '/10 for '+value['domain']);
+                    $('#review .reviewR #'+value['id']+' .author').append('<a href="/'+value['domain']['domain']+'.html">' + value['name'] + '  ' + value['rate'] + '/10 for '+value['domain']['domain']);
                     $('#review .reviewR #'+value['id']).append('<p class="date">' + 'Published  ' + value['date']);
                     $('#review .reviewR #'+value['id']).append('<p>' + value['comment']);
 
@@ -36,7 +36,7 @@ function showComments() {
                 if(index<10) {
                     $('#discussion .padder').append('<div class="review" id="anc' + value['id'] + '">');
                     $('#discussion #anc' + value['id']).append('<p class="author">');
-                    $('#discussion #anc' + value['id']+' .author').append('<a href="/'+value['domain']+'.html">' + value['name'] + '  ' + value['rate'] + '/10  ' + value['e_mail'] + ' for ' + value['domain']);
+                    $('#discussion #anc' + value['id']+' .author').append('<a href="/'+value['domain']['domain']+'.html">' + value['name'] + '  ' + value['rate'] + '/10  ' + value['e_mail'] + ' for ' + value['domain']['domain']);
                     $('#discussion #anc' + value['id']).append('<p class="date">' + 'Published  ' + value['date']);
                     $('#discussion #anc' + value['id']).append('<p>' + value['comment']);
 
@@ -44,7 +44,7 @@ function showComments() {
                 if(index<4) {
                     $('.comments .inner').append('<div class="element" id="' + value['id'] + '">');
                     $('.comments #' + value['id']).append('<p class="author">');
-                    $('.comments #' + value['id']+' .author').append('<a href="/'+value['domain']+'.html">' + value['name']+' for '+value['domain']);
+                    $('.comments #' + value['id']+' .author').append('<a href="/'+value['domain']['domain']+'.html">' + value['name']+' for '+value['domain']['domain']);
                     $('.comments #' + value['id']).append('<p class="date">' + 'Published  ' + value['date']);
                     $('.comments #' + value['id']).append('<p id="' + value['id'] + '">' + value['comment'].substring(0,40)+'...');
 
@@ -65,7 +65,7 @@ function getTraffic()
     var traffic;
     $.ajax({
         type:"POST",
-        url: 'ajax_main_traffic',
+        url: 'site/ajax_main_traffic',
         dataType: "json",
         async: false,
         success: function( resp ) {
