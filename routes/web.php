@@ -21,7 +21,7 @@ Route::get('/featured', 'FeaturedController@main');
 Route::post('/featured/ajax_directory_domains', 'FeaturedController@directory_domains');
 Route::get('/blog', 'BlogController@main');
 Route::get('/about', 'AboutController@main');
-
+Route::get('/{domain}', 'DomainController@main');
 
 
 

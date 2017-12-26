@@ -85,11 +85,11 @@ function showDomains(page, country, rates) {
                 $('#second .table #'+i).append('<td>' + reverse);
 
             });
-            if(resp[1]['rows_max']>10)
+            if(resp[1]>10)
             {
                 $('#second .col_table .p').append('<ul class="pagination">');
                 var r=1;
-                while(r<=Math.ceil(resp[1]['rows_max']/10))
+                while(r<=Math.ceil(resp[1]/10))
                 {
                     if(r!=thisPage)
                     {
