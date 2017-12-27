@@ -4,8 +4,8 @@
 		PUT THIS CODE BEFORE TEMPLATE CODE
 		IN TEMPLATE YOU CAN USE VARIABLES FROM THIS CODE
 	*/
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/config.php');
-	include_once ($_SERVER['DOCUMENT_ROOT'].'/php/autoload.php');
+	include_once('../config.php');
+	include_once ('../autoload.php');
 
 	$time = time();
 
@@ -38,7 +38,7 @@
 	echo $time.PHP_EOL;
 	/*GENRATOR END*/
 
-include '../../public/Template/index.tpl';
+include '../../Template/index.tpl';
 ?>
 
 

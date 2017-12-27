@@ -4,7 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="{{asset('/public/css/app.css')}}"" />
+    <link rel="stylesheet" type="text/css" href="/public/css/app.css" />
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <link rel="stylesheet" type="text/css" href="/public/Template/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="/public/Template/css/layout.css" />

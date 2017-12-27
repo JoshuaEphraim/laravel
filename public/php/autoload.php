@@ -6,7 +6,7 @@ spl_autoload_register('loadParseFactoryDoParse');
 spl_autoload_register('loadParseFactoryGetText');
 spl_autoload_register('loadParseFactoryParsers');
 function loadParseFactory($aClassName) {
-	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .$aClassName . '.php';
+	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'app'.DIRECTORY_SEPARATOR.'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .$aClassName . '.php';
 	if (file_exists($aClassFilePath)) {
 		require_once $aClassFilePath;
 		return true;
@@ -14,7 +14,7 @@ function loadParseFactory($aClassName) {
 	return false;
 }
 function loadParseFactoryConnection($aClassName) {
-	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'Connection' . DIRECTORY_SEPARATOR .$aClassName . '.php';
+	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'app'. DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'Connection' . DIRECTORY_SEPARATOR .$aClassName . '.php';
 	if (file_exists($aClassFilePath)) {
 		require_once $aClassFilePath;
 		return true;
@@ -22,7 +22,7 @@ function loadParseFactoryConnection($aClassName) {
 	return false;
 }
 function loadParseFactoryDataWorker($aClassName) {
-	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'DataWorker' . DIRECTORY_SEPARATOR .$aClassName . '.php';
+	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'app'. DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'DataWorker' . DIRECTORY_SEPARATOR .$aClassName . '.php';
 	if (file_exists($aClassFilePath)) {
 		require_once $aClassFilePath;
 		return true;
@@ -30,7 +30,7 @@ function loadParseFactoryDataWorker($aClassName) {
 	return false;
 }
 function loadParseFactoryDoParse($aClassName) {
-	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'DoParse' . DIRECTORY_SEPARATOR .$aClassName . '.php';
+	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'app'. DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'DoParse' . DIRECTORY_SEPARATOR .$aClassName . '.php';
 	if (file_exists($aClassFilePath)) {
 		require_once $aClassFilePath;
 		return true;
@@ -38,7 +38,7 @@ function loadParseFactoryDoParse($aClassName) {
 	return false;
 }
 function loadParseFactoryGetText($aClassName) {
-	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'GetText' . DIRECTORY_SEPARATOR .$aClassName . '.php';
+	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'app'. DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'GetText' . DIRECTORY_SEPARATOR .$aClassName . '.php';
 	if (file_exists($aClassFilePath)) {
 		require_once $aClassFilePath;
 		return true;
@@ -46,7 +46,7 @@ function loadParseFactoryGetText($aClassName) {
 	return false;
 }
 function loadParseFactoryParsers($aClassName) {
-	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'Parsers' . DIRECTORY_SEPARATOR .$aClassName . '.php';
+	$aClassFilePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'app'. DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR .'parse_factory' . DIRECTORY_SEPARATOR .'Parsers' . DIRECTORY_SEPARATOR .$aClassName . '.php';
 	if (file_exists($aClassFilePath)) {
 		require_once $aClassFilePath;
 		return true;

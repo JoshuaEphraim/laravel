@@ -11,7 +11,8 @@ class DomainController extends Controller
 	public function main($domain)
 	{
 		$domain=explode('.',$domain);
-		$domain=$domain[0];
+        array_pop($domain);
+		$domain=implode('.',$domain);
 		$time = time();
 
 
@@ -38,7 +39,6 @@ class DomainController extends Controller
 		function fileExists($path){
 			return (@fopen($path,"r")==true);
 		}
-		echo 'fewwwwwwwwwwwww';
 	}
 	private function postSomething($data, $url, $resp = 10){
 		$query = http_build_query ($data);
@@ -61,13 +61,11 @@ class DomainController extends Controller
 
 	}
 	private function generate_cache($path,$domain){
-		if(!is_dir($path)){File::makeDirectory(public_path().$path,0777);}
+		if(!is_dir($path)){File::makeDirectory($path,0777,true);}
 
 		$page = $this->postSomething(array('domain'=>$domain), 'http://laravel.job/public/php/template/generate_template.php', $resp = 10);
 		if($page[0] != '404'){
-			$fp=fopen($path.$domain.'.html','w');
-			fwrite($fp, $page);
-			fclose($fp);
+            File::put($path.$domain.'.html', $page);
 		}
 
 		return $page;
