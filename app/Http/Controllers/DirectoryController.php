@@ -74,13 +74,6 @@ class DirectoryController extends Controller
                 $this->objDomain->rate = $rate;
 			}
 		}
-<<<<<<< HEAD
-		$domains = App\Domain::with($point1.'Comments')
-			->with($point2.'countryFilter')
-			->groupBy('domain')
-			->get();
-
-=======
 		$offset=(($show_pages * $this_page) - $show_pages);
 		$domains = App\Domain::with('commentsRaitings')
 			->with('parseReverseIp')
@@ -96,7 +89,6 @@ class DirectoryController extends Controller
 			}
 			else{return true;}
 		});
->>>>>>> cfe345f743b9e0a6c4970c9a860aee873a38af96
 
 
 		$domain=array();
