@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App;
 class DirectoryController extends Controller
 {
+    private $objDomain;
+    public function __construct(App\Domain $d)
+    {
+        $this->objDomain=$d;
+    }
 	public function main($country = 'All',$rate='All',$page='All')
 	{
 		return view('directory',['connect' => 'directory','page'=>$page,'country'=>$country,'rate'=>$rate]);
@@ -41,6 +46,8 @@ class DirectoryController extends Controller
 		$count='*';
 		$rows_max=App\Domain::get()->count();
 		$row=false;
+        $point1='get';
+        $point2='get';
 		if($country!='All'&&$rate!='All')
 		{
 			$r1=App\ParseData::where('geo->geoplugin_countryName', $country)
@@ -62,33 +69,17 @@ class DirectoryController extends Controller
 		}
 		else {
 			if ($country != 'All') {
-				$row=App\ParseData::select('domain_id')->where('geo->geoplugin_countryName', $country)
-					->get();
-				$rows_max=$row->count();
+                $this->objDomain->country = $country;
 			}
 			if ($rate != 'All') {
-				$r=App\DomainComment::groupBy('domain_id')
-					->selectRaw('sum(rate) as sum, domain_id')
-					->selectRaw('count(comment) comments, domain_id')
-					->get();
-				$row = $r->filter(function ($value, $key)use($rate) {
-					return floor($value->sum/$value->comments)==$rate;
-				});
-				$rows_max=$row->count();
+                $this->objDomain->rate = $rate;
 			}
 		}
-		$domains = App\Domain::with('commentsRaitings')
-			->with('parseReverseIp')
+		$domains = App\Domain::with($point1.'Comments')
+			->with($point2.'countryFilter')
 			->groupBy('domain')
-			->paginate(10);
-		$domains = $domains->filter(function ($value)use($row) {
-			if($row) {
-				return $row->search(function ($item, $key) use ($value) {
-					return $item->domain_id == $value->id;
-				});
-			}
-			else{return true;}
-		});
+			->get();
+
 
 
 

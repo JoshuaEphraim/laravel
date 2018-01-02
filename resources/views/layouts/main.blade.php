@@ -34,16 +34,16 @@
     @section('header')
     <div id="header"><div class="inner"><div class="padder">
                 <div class="lSide">
-                    <a href="/" class="logo">Sites Reviews</a>
+                    <a href="<?php echo route('site'); ?>" class="logo">Sites Reviews</a>
                     <a href="#" class="trigger"><!--//--></a>
                     <div class="clear"><!--//--></div>
                 </div>
                 <div class="rSide">
                     <ul class="menu">
-                        <li><a href="/directory">Directory</a></li>
-                        <li><a href="/featured">Featured</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/about">About</a></li>
+                        <li><a href="<?php echo route('directory'); ?>">Directory</a></li>
+                        <li><a href="<?php echo route('featured'); ?>">Featured</a></li>
+                        <li><a href="<?php echo route('blog'); ?>">Blog</a></li>
+                        <li><a href="<?php echo route('about'); ?>">About</a></li>
                     </ul>
                 </div>
                 <div class="clear"><!--//--></div>
