@@ -36,7 +36,6 @@ class DirectoryController extends Controller
 		echo json_encode(array($country,$rate));
 	}
 	public function directory_domains(Request $request){
-		include_once('function.php');
 		$usl = '';
 		$show_pages=10;
 		$this_page = ($request->page!='All')?$request->page:1;
@@ -59,13 +58,13 @@ class DirectoryController extends Controller
 			$r2 = $r2->filter(function ($value, $key)use($rate,$r1) {
 				return floor($value->sum/$value->comments)==$rate&&$r1->where('domain_id', $value->domain_id);
 			});
-			$rows_max=$r2->count();
 			$row = $r1->filter(function ($value)use($r2) {
 					return $r2->search(function ($item, $key) use ($value) {
 						return $item->domain_id == $value->domain_id;
 					});
 
 			});
+			$rows_max=$row->count();
 		}
 		else {
 			if ($country != 'All') {
@@ -75,14 +74,49 @@ class DirectoryController extends Controller
                 $this->objDomain->rate = $rate;
 			}
 		}
+<<<<<<< HEAD
 		$domains = App\Domain::with($point1.'Comments')
 			->with($point2.'countryFilter')
 			->groupBy('domain')
 			->get();
 
+=======
+		$offset=(($show_pages * $this_page) - $show_pages);
+		$domains = App\Domain::with('commentsRaitings')
+			->with('parseReverseIp')
+			->groupBy('domain')
+			->get();
+		$domains = $domains->filter(function ($value)use($row) {
+			if($row) {
+				$res=false;
+				$res=$row->search(function ($item, $key) use ($value) {
+					return $item->domain_id == $value->id;
+				});
+				if($res!==false){return true;}else{return false;}
+			}
+			else{return true;}
+		});
+>>>>>>> cfe345f743b9e0a6c4970c9a860aee873a38af96
 
 
+		$domain=array();
+		foreach ($domains as $item)
+		{
+			if(isset($item->commentsRaitings->all()[0])){
+				$sumR=$item->commentsRaitings->all()[0]->sumR;
+				$comment=$item->commentsRaitings->all()[0]->comments;
+			}
+			else
+			{
+				$sumR=0;
+				$comment=0;
+			}
+			$reverse=$item->parseReverseIp->reverse_count;
+			$domain[]=array('domain'=>$item->domain,'sumR'=>$sumR,'comments'=>$comment,'reverse_count'=>$reverse);
+		}
+		$domain=array_slice($domain, $offset,10);
 
-		echo json_encode(array($domains));
+
+		echo json_encode(array($domain,$rows_max));
 	}
 }

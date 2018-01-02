@@ -4,21 +4,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="public/Template/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="public/Template/css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="public/Template/css/jquery.rateit.css" />
-    <link rel="stylesheet" type="text/css" href="public/Template/css/my.css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/app.css" />
+    <link rel="stylesheet" type="text/css" href="/public/Template/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/public/Template/css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="/public/Template/css/jquery.rateit.css" />
+    <link rel="stylesheet" type="text/css" href="/public/Template/css/my.css" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" />
-    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="public/Template/js/jquery.rateit.min.js"></script>
-    <script type="text/javascript" src="public/Template/js/sitescript.js"></script>
-    <script type="text/javascript" src="public/Template/js/sitescript_functions.js"></script>
-    <script src="models/ammap/my/ammap.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="models/ammap/my/ammap.css" type="text/css" media="all" />
-    <script src="models/ammap/my/worldLow.js" type="text/javascript"></script>
-
-
-    <script src="models/ammap/my/ammapSetings.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/public/js/all.js"></script>
+    <script type="text/javascript" src="/public/Template/js/sitescript.js"></script>
+    <script type="text/javascript" src="/public/Template/js/sitescript_functions.js"></script>
+    <script src="/public/ammap/my/ammap.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/public/ammap/my/ammap.css" type="text/css" media="all" />
+    <script src="/public/ammap/my/worldLow.js" type="text/javascript"></script>
+    <script src="/public/ammap/my/ammapSetings.js" type="text/javascript"></script>
     <title><?php echo $generator->getDomain(); ?></title>
     <script>
         d_id=<?php echo $generator->getDId(); ?>;

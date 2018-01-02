@@ -19,8 +19,10 @@ Route::post('directory/ajax_directory_selector','DirectoryController@directory_s
 Route::post('directory/ajax_directory_domains','DirectoryController@directory_domains');
 Route::get('/featured', ['as' => 'featured', 'uses' => 'FeaturedController@main']);
 Route::post('/featured/ajax_directory_domains', 'FeaturedController@directory_domains');
+
 Route::get('/blog', ['as' => 'blog', 'uses' => 'BlogController@main']);
 Route::get('/about', ['as' => 'about', 'uses' => 'AboutController@main']);
+Route::get('/{domain}', 'DomainController@main');
 
 
 
