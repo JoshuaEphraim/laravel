@@ -103,7 +103,8 @@ class DirectoryController extends Controller
 				$sumR=0;
 				$comment=0;
 			}
-			$reverse=$item->parseReverseIp->reverse_count;
+            $reverse = isset($item->parseReverseIp) ? $item->parseReverseIp->reverse_count : 0;
+
 			$domain[]=array('domain'=>$item->domain,'sumR'=>$sumR,'comments'=>$comment,'reverse_count'=>$reverse);
 		}
 		$domain=array_slice($domain, $offset,10);

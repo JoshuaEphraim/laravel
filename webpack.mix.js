@@ -18,5 +18,6 @@ mix.styles([
 ], 'public/css/bootstrap.css');
 mix.scripts([
     'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/bootstrap/dist/js/bootstrap.min.js'
+    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    'public/Template/js/jquery.rateit.min.js'
 ], 'public/js/all.js');
